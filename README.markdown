@@ -1,9 +1,16 @@
 # stunnel Module #
 
-[![Build Status](https://travis-ci.org/arusso/puppet-stunnel.png?branch=master)](https://travis-ci.org/arusso/puppet-stunnel)
 
 This is an stunnel module that provides support for multiple tunnels, each with
 its own initscript.
+
+## Acknowledgement ##
+
+This is a *fork* of the stunnel module originally written by Aaron Russo: https://forge.puppet.com/arusso/stunnel
+
+There has been no update to the original module for several years and it required the outstanding commit from Michael Weiser  - michaelweiser:dac-override (https://github.com/ucbpi/puppet-stunnel/pull/49) and the SELinux context of the LOGDIR to be changed to: var_log_t.
+
+Other than the above tweaks being incorporated all credit goes to Aaron Russo.
 
 ## What Is stunnel? ##
 
@@ -497,14 +504,15 @@ Contributors:
 * **Stephen Hoekstra**
 * **mjs510**
 * **Olivier Fontannaud**
+* **Michael Weiser**
 
 Contact
 -------
 
-Aaron Russo <arusso@berkeley.edu>
+Andy Thom <andythom68@gmail.com>
 
 Support
 -------
 
 Please log tickets and issues at the
-[Projects site](https://github.com/arusso/puppet-stunnel/issues/)
+[Projects site](https://github.com/DarkMatter68/puppet-stunnel/issues/)
