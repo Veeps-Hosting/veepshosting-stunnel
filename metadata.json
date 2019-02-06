@@ -4,9 +4,9 @@
   "author": "darkmatter68",
   "summary": "stunnel management",
   "license": "MIT",
-  "source": "https://github.com/DarkMatter68/stunnel",
-  "project_page": "https://github.com/DarkMatter68/stunnel",
-  "issues_url": "https://github.com/DarkMatter68/stunnel/issues",
+  "source": "https://github.com/DarkMatter68/puppet-stunnel",
+  "project_page": "https://github.com/DarkMatter68/puppet-stunnel",
+  "issues_url": "https://github.com/DarkMatter68/puppet-stunnel/issues",
   "dependencies": [
     {"version_requirement":">= 4.0.0 <5.0.0","name":"puppetlabs/stdlib"}
   ],
