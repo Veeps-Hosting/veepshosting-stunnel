@@ -17,9 +17,10 @@ class stunnel::config {
   }
 
   file { $stunnel::data::log_dir:
-    ensure => directory,
-    owner  => 'root',
-    group  => 'root',
-    mode   => '0755',
+    ensure  => directory,
+    owner   => 'root',
+    group   => 'root',
+    mode    => '0755',
+    seltype => 'var_log_t',
   }
 }
