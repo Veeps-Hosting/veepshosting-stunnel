@@ -21,43 +21,51 @@ options = <%= option %>
 <% end -%>
 
 <% if @global_opts.is_a? Hash and @global_opts.keys.size > 0 -%>
-
-  <%- @global_opts.sort.map do |option_name,option_value| -%>
+<%- @global_opts.sort.map do |option_name,option_value| -%>
 ; additional global options
-    <% if option_value.kind_of?(Array) -%>
-      <%- for val in option_value do -%>
+<% if option_value.kind_of?(Array) -%>
+<%- for val in option_value do -%>
 <%= option_name %> = <%= val %>
-      <%- end -%>
-    <% else -%>
+<%- end -%>
+<% else -%>
 <%= option_name %> = <%= option_value %>
-    <%- end -%>
-  <%- end -%>
+<%- end -%>
+<%- end -%>
 <%- end -%>
 
 [<%= @name %>]
 <% if @accept -%>
-  accept=<%= @accept %>
+accept=<%= @accept %>
 <% end -%>
 <%- if @connect.is_a? Array -%>
-  <%- @connect.each do |c| -%>
-  connect=<%= c %>
-  <%- end -%>
+<%- @connect.each do |c| -%>
+connect=<%= c %>
+<%- end -%>
 <%- else -%>
-  connect=<%= @connect %>
+connect=<%= @connect %>
 <%- end -%>
 <%- if @connect.is_a? Array -%>
-  failover=<%= @failover %>
+failover=<%= @failover %>
 <%- end -%>
 <% if @client -%>
-  client=yes
+client=yes
 <% else -%>
-  client=no
+client=no
 <% end -%>
 TIMEOUTidle = <%= @timeoutidle %> 
 <% if @service_opts.is_a? Hash and @service_opts.keys.size > 0 -%>
 
-  ; additional service options
-  <%- @service_opts.sort.map do |option_name,option_value| -%>
-  <%= option_name %> = <%= option_value %>
-  <%- end -%>
+; additional service options
+<%- @service_opts.sort.map do |option_name,option_value| -%>
+<%= option_name %> = <%= option_value %>
 <%- end -%>
+<%- end -%>
+
+<% @sni_children.each do |sni_child,config| -%>
+[<%= sni_child %>]
+<%- if config['cert'] -%>cert = <%= config['cert'] %>
+<% end -%>
+connect = <%= config['connect'] %>
+sni = <%= config['sni'] %>
+
+<% end -%>

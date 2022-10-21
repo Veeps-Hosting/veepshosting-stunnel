@@ -80,6 +80,7 @@ define stunnel::tun (
   $output = 'UNSET',
   $global_opts = { },
   $service_opts = { },
+  $sni_children = {},
   $ensure = 'present',
 ) {
   require stunnel
@@ -87,6 +88,7 @@ define stunnel::tun (
 
   validate_hash( $global_opts )
   validate_hash( $service_opts )
+  validate_hash( $sni_children )
   validate_re( $failover, '^(rr|prio)$', '$failover must be either \'rr\' or \'prio\'')
   validate_re( $ensure, '^(absent|present)$', '$ensure must be either \'absent\' or \'present\'')
 
