@@ -8,9 +8,11 @@
   "project_page": "https://github.com/Veeps-Hosting/puppet-stunnel",
   "issues_url": "https://github.com/Veeps-Hosting/puppet-stunnel/issues",
   "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 4.0.0 <9.0.0"}
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 4.0.0 <9.0.0"
+    }
   ],
-  "data_provider": null,
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -33,11 +35,20 @@
       ]
     }
   ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 6.21.0 < 8.0.0"
+    }
+  ],
   "tags": [
     "stunnel",
     "tunnel",
     "tls",
     "ssl",
     "security"
-  ]
+  ],
+  "pdk-version": "2.5.0",
+  "template-url": "pdk-default#2.5.0",
+  "template-ref": "tags/2.5.0-0-g369d483"
 }
