@@ -1,37 +1,35 @@
 {
-  "name": "darkmatter68-stunnel",
-  "version": "1.0.1",
-  "author": "darkmatter68",
+  "name": "veepshosting-stunnel",
+  "version": "1.0.2",
+  "author": "Veeps-Hosting + Veep Hosting",
   "summary": "stunnel management",
   "license": "MIT",
-  "source": "https://github.com/DarkMatter68/puppet-stunnel",
-  "project_page": "https://github.com/DarkMatter68/puppet-stunnel",
-  "issues_url": "https://github.com/DarkMatter68/puppet-stunnel/issues",
+  "source": "https://github.com/Veeps-Hosting/puppet-stunnel",
+  "project_page": "https://github.com/Veeps-Hosting/puppet-stunnel",
+  "issues_url": "https://github.com/Veeps-Hosting/puppet-stunnel/issues",
   "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 4.0.0 <5.0.0"}
+    {"name":"puppetlabs/stdlib","version_requirement":">= 4.0.0 <9.0.0"}
   ],
   "data_provider": null,
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
       "operatingsystemrelease": [
-        "5",
-        "6",
         "7"
       ]
     },
     {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
-        "12.04",
-        "14.04"
+        "20.04",
+        "22.04"
       ]
     },
     {
       "operatingsystem": "Debian",
       "operatingsystemrelease": [
-        "6",
-        "7"
+        "7",
+        "8"
       ]
     }
   ],
