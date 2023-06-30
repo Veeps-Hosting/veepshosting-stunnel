@@ -66,31 +66,25 @@
 define stunnel::tun (
   $accept,
   $connect,
-  $cafile = '',
-  $cert = 'UNSET',
-  $client = false,
-  $options = [ ],
-  $failover = 'rr',
-  $template = 'stunnel/tun.erb',
-  $timeoutidle = '43200',
-  $debug = '5',
-  $install_service = true,
-  $service_ensure = 'running',
-  $service_init_system = 'UNSET',
-  $output = 'UNSET',
-  $global_opts = { },
-  $service_opts = { },
-  $sni_children = {},
-  $ensure = 'present',
+  String                                          $cafile              = '',
+  String                                          $cert                = 'UNSET',
+  Boolean                                         $client              = false,
+  Array                                           $options             = [],
+  Variant[String, Enum['prio','rr']]              $failover            = 'rr',
+  String                                          $template            = 'stunnel/tun.erb',
+  Integer                                         $timeoutidle         = '43200',
+  Integer                                         $debug               = '5',
+  Boolean                                         $install_service     = true,
+  Variant[String, Enum['stopped','running']]      $service_ensure      = 'running',
+  Variant[String, Enum['systemd','sysv','UNSET']] $service_init_system = 'UNSET',
+  String                                          $output              = 'UNSET',
+  Hash                                            $global_opts         = {},
+  Hash                                            $service_opts        = {},
+  Hash                                            $sni_children        = {},
+  Variant[String, Enum['absent','present']]       $ensure              = 'present',
 ) {
   require stunnel
   include stunnel::data
-
-  validate_hash( $global_opts )
-  validate_hash( $service_opts )
-  validate_hash( $sni_children )
-  validate_re( $failover, '^(rr|prio)$', '$failover must be either \'rr\' or \'prio\'')
-  validate_re( $ensure, '^(absent|present)$', '$ensure must be either \'absent\' or \'present\'')
 
   $cafile_real = $cafile ? {
     'UNSET' => '',
@@ -109,35 +103,17 @@ define stunnel::tun (
     $cert_real = $cert
   }
 
-  if $cafile_real != '' {
-    validate_absolute_path( $cafile_real )
-  }
-  if $cert_real != '' {
-    validate_absolute_path( $cert_real )
-  }
-  validate_bool( str2bool($client) )
-
-  if is_string($options) {
-    $options_r = [ $options ]
-  } elsif is_array($options) {
-    $options_r = $options
-  } else {
-    fail('$options must be an array, or a string containing a single option')
-  }
-
   $service_init_system_real = $service_init_system ? {
     'UNSET' => $::stunnel::data::service_init_system,
     default => $service_init_system,
   }
-  validate_re( $service_init_system_real, '^(sysv|systemd)$',
-    '$service_init_system must be either \'sysv\' or \'systemd\'')
 
   $pid = "${stunnel::data::pid_dir}/stunnel-${name}.pid"
   $output_r = $output ? {
     'UNSET' => "${::stunnel::data::log_dir}/${name}.log",
     default => $output,
   }
-  validate_absolute_path($output_r)
+  #validate_absolute_path($output_r)
 
   $prog = $stunnel::data::bin_name
   $svc_bin = "${stunnel::data::bin_path}/${stunnel::data::bin_name}"
